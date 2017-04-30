@@ -1,38 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Game_Manager : MonoBehaviour {
+public class Game_Manager : MonoBehaviour
+{
+    public GameObject Enemy_1;
+    public Transform spawnValues;
+    public int Enemy_1Count;
+    public float spawnWait;
+    public float startWait;
+    public float waveWait;
+    static bool nextWaveOn = true;
 
-    public static int enemy_less = 0;
-    public int coldown = 10;
-    public int[] Wave;
-    public GameObject[] Enemy;
-    public Transform SpawnPoint;
-    int j;
-    // Use this for initialization
-    void Start ()
+    void Start()
     {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {         
-        if (enemy_less >= 1)
-        {
-            Debug.Log("RIP");
-        }
-        for (int i = 0; i < Wave[i]; i++)
-        {
-            Instantiate(Enemy[j], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-            Wave[j] -= 1;
-        }
-        j++;
-        StartCoroutine(Coldown());
-	}
+        StartCoroutine(SpawnWaves());
+        StartCoroutine(BetweenWave());
+    }
 
-    IEnumerator Coldown()
+    IEnumerator SpawnWaves()
     {
-        yield return new WaitForSeconds(coldown);
+        yield return new WaitForSeconds(startWait);
+        while (nextWaveOn == true)
+        {
+            for (int i = 0; i < Enemy_1Count; i++)
+            {           
+                Instantiate(Enemy_1, spawnValues.transform.position, spawnValues.transform.rotation);
+                yield return new WaitForSeconds(spawnWait);
+            }
+           yield return new WaitForSeconds(waveWait);            
+        }
+        nextWaveOn = false;
+    }
+
+    IEnumerator BetweenWave()
+    {
+        yield return new WaitForSeconds(waveWait);
+        nextWaveOn = true;        
     }
 }
