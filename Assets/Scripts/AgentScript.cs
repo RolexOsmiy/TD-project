@@ -4,12 +4,12 @@ using System.Collections;
 public class AgentScript : MonoBehaviour {
 
     public GameObject target;
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
 	// Use this for initialization
 	void Start ()
     {
         target = GameObject.Find("Portal").gameObject;
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
