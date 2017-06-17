@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SpawnManager : MonoBehaviour {
 
     //Main code
+    public GameObject WinOrLoseBar;
+    public string[] StatusText;
     public GameObject[] Enemy;
     public Transform SpawnPossition;
     public int Enemy_Count = 5;
@@ -56,7 +58,10 @@ public class SpawnManager : MonoBehaviour {
 
     IEnumerator TimeToNextWave()
     {
-        yield return new WaitForSeconds(WaitMin);        
+        WinOrLoseBar.GetComponent<Text>().text = StatusText[0];
+        WinOrLoseBar.SetActive(true);
+        yield return new WaitForSeconds(WaitMin);
+        WinOrLoseBar.SetActive(false);
     }
 }
 

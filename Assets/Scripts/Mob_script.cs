@@ -14,7 +14,6 @@ public class Mob_script : MonoBehaviour
         target = GameObject.Find("Portal").gameObject;
         managers = GameObject.Find("managers").gameObject;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-
     }
 
     // Update is called once per frame
@@ -29,13 +28,11 @@ public class Mob_script : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision col)
+    
+
+    public void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "Portal")
-        {
-            SpawnManager.Enemy_Curr_Count--;
-            Destroy(this.gameObject);
-        }
+        Tower_Script.Target = null;
     }
 
     public void Damage(float damage)

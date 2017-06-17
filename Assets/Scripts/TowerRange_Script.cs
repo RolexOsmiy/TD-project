@@ -16,16 +16,11 @@ public class TowerRange_Script : MonoBehaviour {
         this.GetComponent<SphereCollider>().radius = Radius;
 	}
 
-    public void OnCollisionStay(Collision col)
+    public void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Enemy" && Tower_Script.Target == null)
         {
             Tower_Script.Target = col.gameObject;
         }
-    }
-
-    public void OnCollisionExit(Collision col)
-    {
-        Tower_Script.Target = null;        
-    }
+    }    
 }

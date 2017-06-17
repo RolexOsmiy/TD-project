@@ -10,7 +10,7 @@ public class TowerPacket_Script : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-		
+        StartCoroutine(Die());
 	}
 	
 	// Update is called once per frame
@@ -20,10 +20,11 @@ public class TowerPacket_Script : MonoBehaviour {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 	}
 
-    public void OnCollisionEnter(Collision col)
+    public void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Enemy")
         {
+            Debug.Log("Hit");
             col.gameObject.GetComponent<Mob_script>().Damage(damage);
             Destroy(this.gameObject);
         }
@@ -32,5 +33,11 @@ public class TowerPacket_Script : MonoBehaviour {
     public void Target(GameObject target)
     {
         this.transform.LookAt(target.transform);
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 }
