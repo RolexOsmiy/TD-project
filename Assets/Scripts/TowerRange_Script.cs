@@ -5,12 +5,6 @@ using UnityEngine;
 public class TowerRange_Script : MonoBehaviour {
 
     public float Radius = 5;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update ()
     {
         this.GetComponent<SphereCollider>().radius = Radius;
@@ -18,9 +12,9 @@ public class TowerRange_Script : MonoBehaviour {
 
     public void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.tag == "Enemy" && Tower_Script.Target == null)
+        if (col.gameObject.tag == "Enemy" && transform.parent.GetComponent<Tower_Script>().Target == null)
         {
-            Tower_Script.Target = col.gameObject;
+            transform.parent.GetComponent<Tower_Script>().Target = col.gameObject;
         }
     }    
 }

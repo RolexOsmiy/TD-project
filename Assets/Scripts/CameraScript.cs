@@ -3,7 +3,6 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour
 {
-
     public float scrollZone = 30;
     public float scrollSpeed = 5;
 

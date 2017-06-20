@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class GlobalVars_Script : MonoBehaviour {
 
-    public int money = 240;
+    public int maxMissedPub;
+    public static int maxMissed = 10;
+    public static int currMissed = 0;
+    public static int money = 240;
     public Text MoneyText;
+    public Text MissedText;
     public Transform[] EnemyArray;
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
 	void Update ()
     {
+        if (currMissed == maxMissed)
+        {
+            SpawnManager.LoseFunction();
+        }
+        maxMissed = maxMissedPub;
+        MissedText.text = "Missed: " + currMissed + "/" + maxMissed;
         MoneyText.text = "Money: " + money;
 	}
 

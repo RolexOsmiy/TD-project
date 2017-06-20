@@ -20,6 +20,7 @@ public class portal_script : MonoBehaviour {
             {
                 if (item.tag == "Enemy")
                 {
+                    GlobalVars_Script.currMissed++;
                     SpawnManager.Enemy_Curr_Count--;
                     Destroy(item.gameObject);
                 }
@@ -27,19 +28,4 @@ public class portal_script : MonoBehaviour {
             yield return new WaitForSeconds(0.2f);
         }
     }
-
-    void OnDrawGizmos()
-    {
-        //Gizmos.DrawCube(transform.position, size);
-    }
-
-	//void OnTriggerEnter(Collider col)
- //   {
- //       if (col.tag == "Enemy")
- //       {
- //           Destroy(col.gameObject);
- //       }
- //   }
-
-
 }
